@@ -1,0 +1,147 @@
+Sub Import_EB1AOS_TCS_PAGE12AB_3_26_2026()
+
+'PURPOSE: To import direct US/Overseas reports to PAGE12A and PAGE12B from the EB1AOS-TCS Questionnaire (note this one has extra columns for more job duties)
+
+'PROCEDURE (This should be run before deleting all blank rows):
+'   1. Find most recently imported case number from the Import Record and delete everything from it down.
+'       > TIP: Select cell A3 and press CTRL + SHIFT + END to select the entire grid, then Filter out blanks on column A.
+'       >      Highlight the most recently imported record yellow so it's easy to find again, then clear the filter. Go back to the yellow field
+'       >      and press CTRL + SHIFT + END to select everything below it. E.g. if it is row 15, select cell A15 and press CTRL + SHIFT + END, then delete all selected rows.
+'   2. Run this macro - it will create two new Excels, one for 12A and one for 12B
+'   3. Export the 'PAGE12 Serial' Smartfolder (Case Files > Reports > IT Folders) (No Hyperlinks)
+'   4. In the PageSerial column, use Index/Match formula to find PageSerial from the exported PAGE12 Serial excel. Copy down and paste values in the column.
+'   5. Save the workbook as the table name (PAGE12A/B.csv)
+'   6. Repeat with the other workbook
+'   7. When importing both PAGE12A and PAGE12B, use 'Add All Entries' option
+
+'Declare Variables
+    Dim lastRow As Long
+    Dim bkImport As String
+    Dim stImport As String
+    Dim bk12A As String
+    Dim st12A As String
+    Dim bk12B As String
+    Dim st12B As String
+    Dim i As Integer
+    
+    bkImport = ActiveWorkbook.Name
+    stImport = ActiveWorkbook.ActiveSheet.Name
+'Delete Countif Column/Remove Conditional Formatting
+    If Len(Range("XK4")) > 0 Then
+        Range("XK:XK").Delete
+    End If
+    Cells.FormatConditions.Delete
+    
+'Duplicate Active Workbook
+    Sheets(stImport).Copy
+    bk12A = ActiveWorkbook.Name
+    st12A = ActiveWorkbook.ActiveSheet.Name
+'Delete Unneccesary Rows/Columns
+    Rows("1:2").Delete shift:=xlUp
+    Range("A:B,D:KY,LD:RU,RZ:AKB").Delete
+'Rename Column Headings
+    Range("A1") = "CaseSerial"
+    Range("B1") = "PAGE12A.USDRNm"
+    Range("C1") = "PAGE12A.USDRTL"
+    Range("D1") = "PAGE12A.USDRExp"
+    Range("E1") = "PAGE12A.USDRED"
+    Range("F1") = "PAGE12B.ODRNm"
+    Range("G1") = "PAGE12B.ODRTtl"
+    Range("H1") = "PAGE12B.ODRED"
+    Range("I1") = "PAGE12B.ODREXP"
+'Insert Column for PageSerial
+    Range("B:B").Insert xlShiftToRight
+    Range("B1") = "PageSerial"
+'Find and Delete Special Characters
+    Range("A:I").Replace What:="â€™", Replacement:=""
+    Range("A:I").Replace What:="â€“", Replacement:=""
+    Range("A:I").Replace What:="Â", Replacement:=""
+'Duplicate Book1
+    Sheets(st12A).Copy
+    bk12B = ActiveWorkbook.Name
+    st12B = ActiveWorkbook.ActiveSheet.Name
+'***BOOK1
+'Select Book1
+    Windows(bk12A).Activate
+'Delete 12B Columns and Rename CaseSerial/PageSerial
+    Range("G:J").Delete
+    Range("A1") = "PAGE12A.CaseSerial"
+    Range("B1") = "PAGE12A.PageSerial"
+'Remove Blank Rows
+    Range("C:C").SpecialCells(xlCellTypeBlanks).EntireRow.Delete
+'Define lastRow
+    lastRow = Range("C" & Rows.Count).End(xlUp).Row
+'Fill Down CaseSerial
+    For i = 2 To lastRow
+        If Range("A" & i).Value = "" Then
+            Range("A" & i).Value = Range("A" & (i - 1)).Value
+        End If
+    Next i
+'Trim Fields
+    'Name
+    Range("G2").Formula = "=TRIM(C2)"
+    Range("G2:G" & lastRow).FillDown
+    Range("G2:G" & lastRow).Copy
+    Range("C2").PasteSpecial xlPasteValues
+    'Title
+    Range("G2").Formula = "=TRIM(D2)"
+    Range("G2:G" & lastRow).FillDown
+    Range("G2:G" & lastRow).Copy
+    Range("D2").PasteSpecial xlPasteValues
+    'Education
+    Range("G2").Formula = "=TRIM(E2)"
+    Range("G2:G" & lastRow).FillDown
+    Range("G2:G" & lastRow).Copy
+    Range("E2").PasteSpecial xlPasteValues
+    'Experience
+    Range("G2").Formula = "=TRIM(F2)"
+    Range("G2:G" & lastRow).FillDown
+    Range("G2:G" & lastRow).Copy
+    Range("F2").PasteSpecial xlPasteValues
+    'Delete Trim Column
+    Range("G:G").Delete
+'Autofit Columns
+    Cells.EntireColumn.AutoFit
+'***BOOK2
+'Select Book2
+    Windows(bk12B).Activate
+'Delete 12A Columns and Rename CaseSerial/PageSerial
+    Range("C:F").Delete
+    Range("A1") = "PAGE12B.CaseSerial"
+    Range("B1") = "PAGE12B.PageSerial"
+'Remove Blank Rows
+    Range("C:C").SpecialCells(xlCellTypeBlanks).EntireRow.Delete
+'Define lastRow
+    lastRow = Range("C" & Rows.Count).End(xlUp).Row
+'Fill Down CaseSerial
+    For i = 2 To lastRow
+        If Range("A" & i).Value = "" Then
+            Range("A" & i).Value = Range("A" & (i - 1)).Value
+        End If
+    Next i
+'Trim Fields
+    'Name
+    Range("G2").Formula = "=TRIM(C2)"
+    Range("G2:G" & lastRow).FillDown
+    Range("G2:G" & lastRow).Copy
+    Range("C2").PasteSpecial xlPasteValues
+    'Title
+    Range("G2").Formula = "=TRIM(D2)"
+    Range("G2:G" & lastRow).FillDown
+    Range("G2:G" & lastRow).Copy
+    Range("D2").PasteSpecial xlPasteValues
+    'Education
+    Range("G2").Formula = "=TRIM(E2)"
+    Range("G2:G" & lastRow).FillDown
+    Range("G2:G" & lastRow).Copy
+    Range("E2").PasteSpecial xlPasteValues
+    'Experience
+    Range("G2").Formula = "=TRIM(F2)"
+    Range("G2:G" & lastRow).FillDown
+    Range("G2:G" & lastRow).Copy
+    Range("F2").PasteSpecial xlPasteValues
+    'Delete Trim Column
+    Range("G:G").Delete
+'Autofit Columns
+    Cells.EntireColumn.AutoFit
+End Sub
