@@ -3,7 +3,7 @@ Sub Import_HSI_SubPages
 'PURPOSE: To create the import files that will be used in the creation of the page36 subpages, ranging from pag36a all the way to page36L
 
 'PROCEDURE:
- 1. Find most recently imported case number from the Import Record and delete everything from it down.
+'  1. Find most recently imported case number from the Import Record and delete everything from it down.
 '       > TIP: Select cell A3 and press CTRL + SHIFT + END to select the entire grid, then Filter out blanks on column A.
 '       >      Highlight the most recently imported record yellow so it's easy to find again, then clear the filter. Go back to the yellow field
 '       >      and press CTRL + SHIFT + END to select everything below it. E.g. if it is row 15, select cell A15 and press CTRL + SHIFT + END, then delete all selected rows.
@@ -42,14 +42,134 @@ Sub Import_HSI_SubPages
     Dim st36K As String
     Dim st36L As String
 
-    Dim i As Iteger
+    Dim i As Integer
 
     bkImport = ActiveWorkbook.Name
     stImport = ActiveWorkbook.ActiveSheet.Name
 
 'Deleting the CountIF Column and Removing Conditional Formatting
-    If Len(Range("AA1")) > 0 Then
-        Range("AA:AA).Delete
+    If Len(Range("HR4")) > 0 Then
+        Range("HR:HR").Delete
     End If
     Cells.FormatConditions.Delete
+
+'Page 36A CODE
+'Duplicate Active Workbook
+    Sheets(stImport).Copy
+    bk36A = ActiveWorkbook.Name
+    st36A = ActiveWorkbook.ActiveSheet.Name
+'Delete Unnecsary columns and rows
+    Rows("1:2").Delete shift:=xlUp
+    Range("A:A,C:EH,EL:EL,ER:ER,EV:HQ").Delete
+'Rename the Column Headings
+    Range("A1").Value = "CaseSerial"
+    Range("B1").Value = "PAGE36A.DegreeName"
+    Range("C1").Value = "PAGE36A.IssueInst"
+    Range("D1").Value = "PAGE36A.DegreeDate"
+    RANGE("E1").Value = "PAGE36B.ProjTtl"
+    Range("F1").Value = "PAGE36B.ProjRole"
+    Range("G1").Value = "PAGE36B.ProjInst"
+    Range("H1").Value = "PAGE36B.ProjStart"
+    Range("I1").Value = "PAGE36B.ProjEnd"
+    Range("J1").Value = "PAGE36C.PubTitle"
+    Range("K1").Value = "PAGE36C.PubJrnl"
+    Range("K1").Value = "PAGE36C.PubDate"
+'Need to add the rest of the code for the other subpages (PAGE36B, PAGE36C, etc.) following the same structure as above, including duplicating the workbook, deleting unnecessary columns and rows, and renaming column headings.
+'Insert the column for page serial
+    Range("B:B").Insert shift:=xlToRight
+    Range("B1").Value = "PageSerial"
+'find and delete any special weird characters in the data
+    Range("A:I").Replace What:="â€™", Replacement:=""
+    Range("A:I").Replace What:="â€“", Replacement:=""
+    Range("A:I").Replace What:="Â", Replacement:=""
+'Duplicate Book1
+    Sheets(st36A).Copy
+    bk36B = ActiveWorkbook.Name
+    st36B = ActiveWorkbook.ActiveSheet.Name
+    bk36C = ActiveWorkbook.Name
+    st36C = ActiveWorkbook.ActiveSheet.Name
+'***Book 1
+'Selecting the first workbook
+    Windows(bk36A).Activate
+'Delete 36B-M columns and renaming some columns headings
+    Range("E:I").Delete
+    Range("A1").Value = "Page36A.CaseSerial"
+    Range("B1").Value = "Page36A.PageSerial"
+'Remove Blank Rows
+    Range("C:C").SpecialCells(xlCellTypeBlanks).EntireRow.Delete
+'Define the last row of data
+    lastRow = Range("C" & Rows.Count).End(xlUp).row
+'fill Down Case Serial Column
+    For i =2 To lastRow
+        If Range("A" & i).Value = "" Then
+            Range("A" & i).Value = Range("A" & (i - 1)).Value
+        End If
+    Next i
+'Trim The fields
+    'First Column
+    Range("H2").Formula = "=TRIM(C2)"
+    Range("H2:" & lastRow).FillDown
+    Range("G2:G" & lastRow).Copy
+    Range("C2").PasteSpecial xlPasteValues
+    'Second Column
+    Range("H2").Formula = "=TRIM(D2)"
+    Range("H2:" & lastRow).FillDown
+    Range("G2:G" & lastRow).Copy
+    Range("D2").PasteSpecial xlPasteValues
+    'Third Column
+    Range("H2").Formula = "=TRIM(E2)"
+    Range("H2:" & lastRow).FillDown
+    Range("G2:G" & lastRow).Copy
+    Range("E2").PasteSpecial xlPasteValues
+    'Delete Trim Column
+    Range("H:H").Delete
+'Autofit Columns
+    Cells.EntireColumn.AutoFit
+'Book file for 36B
+'Select book 2
+    Windows(bk36B).Activate
+'Dlete the 36A columns
+    Range("C:F").Delete
+    Range("A1") = "PAGE36B.CaseSerial"
+    Range("B1") = "Page32B.PageSerial"
+'Remove blank rows
+    Range("C:C").SpecialCells(xlCellTypeBlanks).EntireRow.Delete
+'Define Last Row, Again
+    lastRow = Range("C" & Rows.Count).End(xlUp).Row
+'Fill Down the case serial again
+    For i = 2 To lastRow
+        If Range("A" & i).Value = "" Then
+            Range("A" & i).Value = Range("A" & (i - 1)).Value
+        End If
+    Next i
+'Trim more fields
+    Range("H2").Formula = "=TRIM(C2)"
+    Range("H2:H" & lastRow).FillDown
+    Range("H2:H" & lastRow).Copy
+    Range("C2").PasteSpecial xlPasteValues
+    'Second Column
+    Range("H2").Formula = "=TRIM(D2)"
+    Range("H2:H" & lastRow).FillDown
+    Range("H2:H" & lastRow).Copy
+    Range("D2").PasteSpecial xlPasteValues
+    'Third Column
+    Range("H2").Formula = "=TRIM(E2)"
+    Range("H2:H" & lastRow).FillDown
+    Range("H2:H" & lastRow).Copy
+    Range("F2").PasteSpecial xlPasteValues
+    'Fourth Column
+    Range("H2").Formula = "=TRIM(F2)"
+    Range("H2:H" & lastRow).FillDown
+    Range("H2:H" & lastRow).Copy
+    Range("F2").PasteSpecial xlPasteValues
+    'Fifth Column
+    Range("H2").Formula = "=TRIM(G2)"
+    Range("H2:H" & lastRow).FillDown
+    Range("H2:H" & lastRow).Copy
+    Range("G2").PasteSpecial xlPasteValues
+    'Delete the Trim Column
+    Range("H:H").Delete
+'AutoFit Columns again
+    Cells.EntireColumn.AutoFit
+'Book for PAGE36C
 End Sub 

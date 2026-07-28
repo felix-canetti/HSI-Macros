@@ -73,7 +73,7 @@ Sub Import_HSI_SubPages
     Range("I1").Value = "PAGE36B.ProjEnd"
 'Need to add the rest of the code for the other subpages (PAGE36B, PAGE36C, etc.) following the same structure as above, including duplicating the workbook, deleting unnecessary columns and rows, and renaming column headings.
 'Insert the column for page serial
-    Range("B:").Insert shift:=xlToRight
+    Range("B:B").Insert shift:=xlToRight
     Range("B1").Value = "PageSerial"
 'find and delete any special weird characters in the data
     Range("A:I").Replace What:="â€™", Replacement:=""
