@@ -60,7 +60,7 @@ Sub Import_HSI_SubPages
     st36A = ActiveWorkbook.ActiveSheet.Name
 'Delete Unnecsary columns and rows
     Rows("1:2").Delete shift:=xlUp
-    Range("A:A,C:EH,EL:EL,ER:HQ").Delete
+    Range("A:A,C:EH,EL:EL,ER:ER,EV:HQ").Delete
 'Rename the Column Headings
     Range("A1").Value = "CaseSerial"
     Range("B1").Value = "PAGE36A.DegreeName"
@@ -71,6 +71,9 @@ Sub Import_HSI_SubPages
     Range("G1").Value = "PAGE36B.ProjInst"
     Range("H1").Value = "PAGE36B.ProjStart"
     Range("I1").Value = "PAGE36B.ProjEnd"
+    Range("J1").Value = "PAGE36C.PubTitle"
+    Range("K1").Value = "PAGE36C.PubJrnl"
+    Range("K1").Value = "PAGE36C.PubDate"
 'Need to add the rest of the code for the other subpages (PAGE36B, PAGE36C, etc.) following the same structure as above, including duplicating the workbook, deleting unnecessary columns and rows, and renaming column headings.
 'Insert the column for page serial
     Range("B:B").Insert shift:=xlToRight
@@ -83,6 +86,8 @@ Sub Import_HSI_SubPages
     Sheets(st36A).Copy
     bk36B = ActiveWorkbook.Name
     st36B = ActiveWorkbook.ActiveSheet.Name
+    bk36C = ActiveWorkbook.Name
+    st36C = ActiveWorkbook.ActiveSheet.Name
 '***Book 1
 'Selecting the first workbook
     Windows(bk36A).Activate
@@ -101,15 +106,26 @@ Sub Import_HSI_SubPages
         End If
     Next i
 'Trim The fields
-    Range("G2").Formula = "=TRIM(C2)"
-    Range("G2:G" & lastRow).FillDown
+    'First Column
+    Range("H2").Formula = "=TRIM(C2)"
+    Range("H2:" & lastRow).FillDown
     Range("G2:G" & lastRow).Copy
     Range("C2").PasteSpecial xlPasteValues
+    'Second Column
+    Range("H2").Formula = "=TRIM(D2)"
+    Range("H2:" & lastRow).FillDown
+    Range("G2:G" & lastRow).Copy
+    Range("D2").PasteSpecial xlPasteValues
+    'Third Column
+    Range("H2").Formula = "=TRIM(E2)"
+    Range("H2:" & lastRow).FillDown
+    Range("G2:G" & lastRow).Copy
+    Range("E2").PasteSpecial xlPasteValues
     'Delete Trim Column
-    Range("G:G").Delete
+    Range("H:H").Delete
 'Autofit Columns
     Cells.EntireColumn.AutoFit
-'Book 2
+'Book file for 36B
 'Select book 2
     Windows(bk36B).Activate
 'Dlete the 36A columns
@@ -155,4 +171,5 @@ Sub Import_HSI_SubPages
     Range("H:H").Delete
 'AutoFit Columns again
     Cells.EntireColumn.AutoFit
+'Book for PAGE36C
 End Sub 
