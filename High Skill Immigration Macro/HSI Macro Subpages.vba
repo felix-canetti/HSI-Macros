@@ -303,7 +303,7 @@ Sub Import_HSI_SubPages
     Range("J2:J" & lastRow).FillDown
     Range("J2:J" & lastRow).Copy
     Range("F2").PasteSpecial xlPasteValues
-        'Fifth Column
+    'Eight Column
     Range("J2").Formula = "=TRIM(F2)"
     Range("J2:J" & lastRow).FillDown
     Range("J2:J" & lastRow).Copy
