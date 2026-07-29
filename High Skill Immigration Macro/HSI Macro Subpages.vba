@@ -254,9 +254,9 @@ Sub Import_HSI_SubPages
 'Select book 4
     Windows(bk36D).Activate
 'Dlete the non 36D columns
-    Range("C:J,N:BO").Delete
-    Range("A1") = "PAGE36C.CaseSerial"
-    Range("B1") = "Page32C.PageSerial"
+    Range("C:J,R:BO").Delete
+    Range("A1") = "PAGE36D.CaseSerial"
+    Range("B1") = "Page32D.PageSerial"
     'Remove Blank Rows
     Range("C:C").SpecialCells(xlCellTypeBlanks).EntireRow.Delete
 'Define the last row of data
@@ -269,20 +269,45 @@ Sub Import_HSI_SubPages
     Next i
 'Trim The fields
     'First Column
-    Range("F2").Formula = "=TRIM(C2)"
-    Range("F2:F" & lastRow).FillDown
-    Range("F2:F" & lastRow).Copy
+    Range("J2").Formula = "=TRIM(C2)"
+    Range("J2:J" & lastRow).FillDown
+    Range("J2:J" & lastRow).Copy
     Range("C2").PasteSpecial xlPasteValues
     'Second Column
-    Range("F2").Formula = "=TRIM(D2)"
-    Range("F2:F" & lastRow).FillDown
-    Range("F2:F" & lastRow).Copy
+    Range("J2").Formula = "=TRIM(D2)"
+    Range("J2:J" & lastRow).FillDown
+    Range("J2:J" & lastRow).Copy
     Range("D2").PasteSpecial xlPasteValues
     'Third Column
-    Range("F2").Formula = "=TRIM(E2)"
-    Range("F2:F" & lastRow).FillDown
-    Range("F2:F" & lastRow).Copy
+    Range("J2").Formula = "=TRIM(E2)"
+    Range("J2:J" & lastRow).FillDown
+    Range("J2:J" & lastRow).Copy
     Range("E2").PasteSpecial xlPasteValues
+    'Fourth Column
+    Range("J2").Formula = "=TRIM(F2)"
+    Range("J2:J" & lastRow).FillDown
+    Range("J2:J" & lastRow).Copy
+    Range("F2").PasteSpecial xlPasteValues
+    'Fifth Column
+    Range("J2").Formula = "=TRIM(F2)"
+    Range("J2:J" & lastRow).FillDown
+    Range("J2:J" & lastRow).Copy
+    Range("F2").PasteSpecial xlPasteValues
+    'Sixth Column
+    Range("J2").Formula = "=TRIM(F2)"
+    Range("J2:J" & lastRow).FillDown
+    Range("J2:J" & lastRow).Copy
+    Range("F2").PasteSpecial xlPasteValues
+    'Seventh Column
+    Range("J2").Formula = "=TRIM(F2)"
+    Range("J2:J" & lastRow).FillDown
+    Range("J2:J" & lastRow).Copy
+    Range("F2").PasteSpecial xlPasteValues
+        'Fifth Column
+    Range("J2").Formula = "=TRIM(F2)"
+    Range("J2:J" & lastRow).FillDown
+    Range("J2:J" & lastRow).Copy
+    Range("F2").PasteSpecial xlPasteValues
     'Delete Trim Column
-    Range("F:F").Delete
+    Range("J:J").Delete
 End Sub 
