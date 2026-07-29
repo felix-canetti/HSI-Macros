@@ -132,6 +132,27 @@ Sub Import_HSI_SubPages
     Sheets(st36A).Copy
     bk36D = ActiveWorkbook.Name
     st36D = ActiveWorkbook.ActiveSheet.Name
+    Sheets(st36A).Copy
+    bk36E = ActiveWorkbook.Name
+    st36E = ActiveWorkbook.ActiveSheet.Name
+    Sheets(st36A).Copy
+    bk36F = ActiveWorkbook.Name
+    st36F = ActiveWorkbook.ActiveSheet.Name
+    Sheets(st36A).Copy
+    bk36M = ActiveWorkbook.Name
+    st36M = ActiveWorkbook.ActiveSheet.Name
+    Sheets(st36A).Copy
+    bk36H = ActiveWorkbook.Name
+    st36H = ActiveWorkbook.ActiveSheet.Name
+    Sheets(st36A).Copy
+    bk36I = ActiveWorkbook.Name
+    st36I = ActiveWorkbook.ActiveSheet.Name
+    Sheets(st36A).Copy
+    bk36K = ActiveWorkbook.Name
+    st36K = ActiveWorkbook.ActiveSheet.Name
+    Sheets(st36A).Copy
+    bk36L = ActiveWorkbook.Name
+    st36L = ActiveWorkbook.ActiveSheet.Name
 '***Book 1
 'Selecting the first workbook
     Windows(bk36A).Activate
@@ -172,7 +193,7 @@ Sub Import_HSI_SubPages
 'Book file for 36B
 'Select book 2
     Windows(bk36B).Activate
-'Dlete the 36A columns
+'Dlete the non 36B columns
     Range("C:E,K:BO").Delete
     Range("A1") = "PAGE36B.CaseSerial"
     Range("B1") = "Page32B.PageSerial"
@@ -218,7 +239,7 @@ Sub Import_HSI_SubPages
 'Book for PAGE36C
 'Select book 3
     Windows(bk36C).Activate
-'Dlete the 36A columns
+'Dlete the 36C columns
     Range("C:J,N:BO").Delete
     Range("A1") = "PAGE36C.CaseSerial"
     Range("B1") = "Page32C.PageSerial"
@@ -254,7 +275,7 @@ Sub Import_HSI_SubPages
 'Select book 4
     Windows(bk36D).Activate
 'Dlete the non 36D columns
-    Range("C:J,R:BO").Delete
+    Range("C:M,R:BO").Delete
     Range("A1") = "PAGE36D.CaseSerial"
     Range("B1") = "Page32D.PageSerial"
     'Remove Blank Rows
@@ -269,45 +290,338 @@ Sub Import_HSI_SubPages
     Next i
 'Trim The fields
     'First Column
-    Range("J2").Formula = "=TRIM(C2)"
-    Range("J2:J" & lastRow).FillDown
-    Range("J2:J" & lastRow).Copy
+    Range("G2").Formula = "=TRIM(C2)"
+    Range("G2:G" & lastRow).FillDown
+    Range("G2:G" & lastRow).Copy
     Range("C2").PasteSpecial xlPasteValues
     'Second Column
-    Range("J2").Formula = "=TRIM(D2)"
-    Range("J2:J" & lastRow).FillDown
-    Range("J2:J" & lastRow).Copy
+    Range("G2").Formula = "=TRIM(D2)"
+    Range("G2:G" & lastRow).FillDown
+    Range("G2:G" & lastRow).Copy
     Range("D2").PasteSpecial xlPasteValues
     'Third Column
-    Range("J2").Formula = "=TRIM(E2)"
-    Range("J2:J" & lastRow).FillDown
-    Range("J2:J" & lastRow).Copy
+    Range("G2").Formula = "=TRIM(E2)"
+    Range("G2:G" & lastRow).FillDown
+    Range("G2:G" & lastRow).Copy
     Range("E2").PasteSpecial xlPasteValues
     'Fourth Column
-    Range("J2").Formula = "=TRIM(F2)"
-    Range("J2:J" & lastRow).FillDown
-    Range("J2:J" & lastRow).Copy
-    Range("F2").PasteSpecial xlPasteValues
-    'Fifth Column
-    Range("J2").Formula = "=TRIM(F2)"
-    Range("J2:J" & lastRow).FillDown
-    Range("J2:J" & lastRow).Copy
-    Range("F2").PasteSpecial xlPasteValues
-    'Sixth Column
-    Range("J2").Formula = "=TRIM(F2)"
-    Range("J2:J" & lastRow).FillDown
-    Range("J2:J" & lastRow).Copy
-    Range("F2").PasteSpecial xlPasteValues
-    'Seventh Column
-    Range("J2").Formula = "=TRIM(F2)"
-    Range("J2:J" & lastRow).FillDown
-    Range("J2:J" & lastRow).Copy
-    Range("F2").PasteSpecial xlPasteValues
-    'Eight Column
-    Range("J2").Formula = "=TRIM(F2)"
-    Range("J2:J" & lastRow).FillDown
-    Range("J2:J" & lastRow).Copy
+    Range("G2").Formula = "=TRIM(F2)"
+    Range("G2:G" & lastRow).FillDown
+    Range("G2:G" & lastRow).Copy
     Range("F2").PasteSpecial xlPasteValues
     'Delete Trim Column
-    Range("J:J").Delete
+    Range("G:G").Delete
+'Select Book 5
+    Windows(bk36E).Activate
+'Dlete the non 36E columns
+    Range("C:Q,V:BO").Delete
+    Range("A1") = "PAGE36E.CaseSerial"
+    Range("B1") = "Page32E.PageSerial"
+    'Remove Blank Rows
+    Range("C:C").SpecialCells(xlCellTypeBlanks).EntireRow.Delete
+'Define the last row of data
+    lastRow = Range("C" & Rows.Count).End(xlUp).row
+'fill Down Case Serial Column
+    For i =2 To lastRow
+        If Range("A" & i).Value = "" Then
+            Range("A" & i).Value = Range("A" & (i - 1)).Value
+        End If
+    Next i
+'Trim The fields
+    'First Column
+    Range("G2").Formula = "=TRIM(C2)"
+    Range("G2:G" & lastRow).FillDown
+    Range("G2:G" & lastRow).Copy
+    Range("C2").PasteSpecial xlPasteValues
+    'Second Column
+    Range("G2").Formula = "=TRIM(D2)"
+    Range("G2:G" & lastRow).FillDown
+    Range("G2:G" & lastRow).Copy
+    Range("D2").PasteSpecial xlPasteValues
+    'Third Column
+    Range("G2").Formula = "=TRIM(E2)"
+    Range("G2:G" & lastRow).FillDown
+    Range("G2:G" & lastRow).Copy
+    Range("E2").PasteSpecial xlPasteValues
+    'Fourth Column
+    Range("G2").Formula = "=TRIM(F2)"
+    Range("G2:G" & lastRow).FillDown
+    Range("G2:G" & lastRow).Copy
+    Range("F2").PasteSpecial xlPasteValues
+    'Delete Trim Column
+    Range("G:G").Delete
+'Select Book 6
+    Windows(bk36F).Activate
+'Dlete the non 36F columns
+    Range("C:U,Z:BO").Delete
+    Range("A1") = "PAGE36F.CaseSerial"
+    Range("B1") = "Page32F.PageSerial"
+    'Remove Blank Rows
+    Range("C:C").SpecialCells(xlCellTypeBlanks).EntireRow.Delete
+'Define the last row of data
+    lastRow = Range("C" & Rows.Count).End(xlUp).row
+'fill Down Case Serial Column
+    For i =2 To lastRow
+        If Range("A" & i).Value = "" Then
+            Range("A" & i).Value = Range("A" & (i - 1)).Value
+        End If
+    Next i
+'Trim The fields
+    'First Column
+    Range("G2").Formula = "=TRIM(C2)"
+    Range("G2:G" & lastRow).FillDown
+    Range("G2:G" & lastRow).Copy
+    Range("C2").PasteSpecial xlPasteValues
+    'Second Column
+    Range("G2").Formula = "=TRIM(D2)"
+    Range("G2:G" & lastRow).FillDown
+    Range("G2:G" & lastRow).Copy
+    Range("D2").PasteSpecial xlPasteValues
+    'Third Column
+    Range("G2").Formula = "=TRIM(E2)"
+    Range("G2:G" & lastRow).FillDown
+    Range("G2:G" & lastRow).Copy
+    Range("E2").PasteSpecial xlPasteValues
+    'Fourth Column
+    Range("G2").Formula = "=TRIM(F2)"
+    Range("G2:G" & lastRow).FillDown
+    Range("G2:G" & lastRow).Copy
+    Range("F2").PasteSpecial xlPasteValues
+    'Delete Trim Column
+    Range("G:G").Delete
+
+'Select Book 7
+    Windows(bk36M).Activate
+'Dlete the non 36M columns
+    Range("C:Y,AD:BO").Delete
+    Range("A1") = "PAGE36M.CaseSerial"
+    Range("B1") = "Page32M.PageSerial"
+    'Remove Blank Rows
+    Range("C:C").SpecialCells(xlCellTypeBlanks).EntireRow.Delete
+'Define the last row of data
+    lastRow = Range("C" & Rows.Count).End(xlUp).row
+'fill Down Case Serial Column
+    For i =2 To lastRow
+        If Range("A" & i).Value = "" Then
+            Range("A" & i).Value = Range("A" & (i - 1)).Value
+        End If
+    Next i
+'Trim The fields
+    'First Column
+    Range("G2").Formula = "=TRIM(C2)"
+    Range("G2:G" & lastRow).FillDown
+    Range("G2:G" & lastRow).Copy
+    Range("C2").PasteSpecial xlPasteValues
+    'Second Column
+    Range("G2").Formula = "=TRIM(D2)"
+    Range("G2:G" & lastRow).FillDown
+    Range("G2:G" & lastRow).Copy
+    Range("D2").PasteSpecial xlPasteValues
+    'Third Column
+    Range("G2").Formula = "=TRIM(E2)"
+    Range("G2:G" & lastRow).FillDown
+    Range("G2:G" & lastRow).Copy
+    Range("E2").PasteSpecial xlPasteValues
+    'Fourth Column
+    Range("G2").Formula = "=TRIM(F2)"
+    Range("G2:G" & lastRow).FillDown
+    Range("G2:G" & lastRow).Copy
+    Range("F2").PasteSpecial xlPasteValues
+    'Delete Trim Column
+    Range("G:G").Delete
+
+'Select Book 8
+    Windows(bk36H).Activate
+'Dlete the non 36H columns
+    Range("C:AC,AH:BO").Delete
+    Range("A1") = "PAGE36H.CaseSerial"
+    Range("B1") = "Page36H.PageSerial"
+    'Remove Blank Rows
+    Range("C:C").SpecialCells(xlCellTypeBlanks).EntireRow.Delete
+'Define the last row of data
+    lastRow = Range("C" & Rows.Count).End(xlUp).row
+'fill Down Case Serial Column
+    For i =2 To lastRow
+        If Range("A" & i).Value = "" Then
+            Range("A" & i).Value = Range("A" & (i - 1)).Value
+        End If
+    Next i
+'Trim The fields
+    'First Column
+    Range("G2").Formula = "=TRIM(C2)"
+    Range("G2:G" & lastRow).FillDown
+    Range("G2:G" & lastRow).Copy
+    Range("C2").PasteSpecial xlPasteValues
+    'Second Column
+    Range("G2").Formula = "=TRIM(D2)"
+    Range("G2:G" & lastRow).FillDown
+    Range("G2:G" & lastRow).Copy
+    Range("D2").PasteSpecial xlPasteValues
+    'Third Column
+    Range("G2").Formula = "=TRIM(E2)"
+    Range("G2:G" & lastRow).FillDown
+    Range("G2:G" & lastRow).Copy
+    Range("E2").PasteSpecial xlPasteValues
+    'Fourth Column
+    Range("G2").Formula = "=TRIM(F2)"
+    Range("G2:G" & lastRow).FillDown
+    Range("G2:G" & lastRow).Copy
+    Range("F2").PasteSpecial xlPasteValues
+    'Delete Trim Column
+    Range("G:G").Delete
+
+'Select Book 9
+    Windows(bk36I).Activate
+'Dlete the non 36I columns
+    Range("C:AG,AM:BO").Delete
+    Range("A1") = "PAGE36I.CaseSerial"
+    Range("B1") = "Page36I.PageSerial"
+    'Remove Blank Rows
+    Range("C:C").SpecialCells(xlCellTypeBlanks).EntireRow.Delete
+'Define the last row of data
+    lastRow = Range("C" & Rows.Count).End(xlUp).row
+'fill Down Case Serial Column
+    For i =2 To lastRow
+        If Range("A" & i).Value = "" Then
+            Range("A" & i).Value = Range("A" & (i - 1)).Value
+        End If
+    Next i
+'Trim The fields
+    'First Column
+    Range("H2").Formula = "=TRIM(C2)"
+    Range("H2:H" & lastRow).FillDown
+    Range("H2:H" & lastRow).Copy
+    Range("C2").PasteSpecial xlPasteValues
+    'Second Column
+    Range("H2").Formula = "=TRIM(D2)"
+    Range("H2:H" & lastRow).FillDown
+    Range("H2:H" & lastRow).Copy
+    Range("D2").PasteSpecial xlPasteValues
+    'Third Column
+    Range("H2").Formula = "=TRIM(E2)"
+    Range("H2:H" & lastRow).FillDown
+    Range("H2:H" & lastRow).Copy
+    Range("E2").PasteSpecial xlPasteValues
+    'Fourth Column
+    Range("H2").Formula = "=TRIM(F2)"
+    Range("H2:H" & lastRow).FillDown
+    Range("H2:H" & lastRow).Copy
+    Range("F2").PasteSpecial xlPasteValues
+    'Fifth Column
+    Range("H2").Formula = "=TRIM(G2)"
+    Range("H2:H" & lastRow).FillDown
+    Range("H2:H" & lastRow).Copy
+    Range("G2").PasteSpecial xlPasteValues
+    'Delete Trim Column
+    Range("G:G").Delete
+
+'Select Book 10
+    Windows(bk36K).Activate
+'Dlete the non 36K columns
+    Range("C:AL,AV:BO").Delete
+    Range("A1") = "PAGE36I.CaseSerial"
+    Range("B1") = "Page36I.PageSerial"
+    'Remove Blank Rows
+    Range("C:C").SpecialCells(xlCellTypeBlanks).EntireRow.Delete
+'Define the last row of data
+    lastRow = Range("C" & Rows.Count).End(xlUp).row
+'fill Down Case Serial Column
+    For i =2 To lastRow
+        If Range("A" & i).Value = "" Then
+            Range("A" & i).Value = Range("A" & (i - 1)).Value
+        End If
+    Next i
+'Trim The fields
+    'First Column
+    Range("L2").Formula = "=TRIM(C2)"
+    Range("L2:L" & lastRow).FillDown
+    Range("L2:L" & lastRow).Copy
+    Range("C2").PasteSpecial xlPasteValues
+    'Second Column
+    Range("L2").Formula = "=TRIM(D2)"
+    Range("L2:L" & lastRow).FillDown
+    Range("L2:L" & lastRow).Copy
+    Range("D2").PasteSpecial xlPasteValues
+    'Third Column
+    Range("L2").Formula = "=TRIM(E2)"
+    Range("L2:L" & lastRow).FillDown
+    Range("L2:L" & lastRow).Copy
+    Range("E2").PasteSpecial xlPasteValues
+    'Fourth Column
+    Range("L2").Formula = "=TRIM(F2)"
+    Range("L2:L" & lastRow).FillDown
+    Range("L2:L" & lastRow).Copy
+    Range("F2").PasteSpecial xlPasteValues
+    'Fifth Column
+    Range("L2").Formula = "=TRIM(G2)"
+    Range("L2:L" & lastRow).FillDown
+    Range("L2:L" & lastRow).Copy
+    Range("G2").PasteSpecial xlPasteValues
+    'Sixth Column
+    Range("L2").Formula = "=TRIM(H2)"
+    Range("L2:L" & lastRow).FillDown
+    Range("L2:L" & lastRow).Copy
+    Range("H2").PasteSpecial xlPasteValues
+    'Seventh Column
+    Range("L2").Formula = "=TRIM(I2)"
+    Range("L2:L" & lastRow).FillDown
+    Range("L2:L" & lastRow).Copy
+    Range("I2").PasteSpecial xlPasteValues    
+    'Eighth Column
+    Range("L2").Formula = "=TRIM(J2)"
+    Range("L2:L" & lastRow).FillDown
+    Range("L2:L" & lastRow).Copy
+    Range("J2").PasteSpecial xlPasteValues
+    'Ninth Column
+    Range("L2").Formula = "=TRIM(K2)"
+    Range("L2:L" & lastRow).FillDown
+    Range("L2:L" & lastRow).Copy
+    Range("K2").PasteSpecial xlPasteValues    
+    'Delete Trim Column
+    Range("L:L").Delete
+    
+'Select Book 11
+    Windows(bk36).Activate
+'Dlete the non 36I columns
+    Range("C:AU").Delete
+    Range("A1") = "PAGE36L.CaseSerial"
+    Range("B1") = "Page36L.PageSerial"
+    'Remove Blank Rows
+    Range("C:C").SpecialCells(xlCellTypeBlanks).EntireRow.Delete
+'Define the last row of data
+    lastRow = Range("C" & Rows.Count).End(xlUp).row
+'fill Down Case Serial Column
+    For i =2 To lastRow
+        If Range("A" & i).Value = "" Then
+            Range("A" & i).Value = Range("A" & (i - 1)).Value
+        End If
+    Next i
+'Trim The fields
+    'First Column
+    Range("H2").Formula = "=TRIM(C2)"
+    Range("H2:H" & lastRow).FillDown
+    Range("H2:H" & lastRow).Copy
+    Range("C2").PasteSpecial xlPasteValues
+    'Second Column
+    Range("H2").Formula = "=TRIM(D2)"
+    Range("H2:H" & lastRow).FillDown
+    Range("H2:H" & lastRow).Copy
+    Range("D2").PasteSpecial xlPasteValues
+    'Third Column
+    Range("H2").Formula = "=TRIM(E2)"
+    Range("H2:H" & lastRow).FillDown
+    Range("H2:H" & lastRow).Copy
+    Range("E2").PasteSpecial xlPasteValues
+    'Fourth Column
+    Range("H2").Formula = "=TRIM(F2)"
+    Range("H2:H" & lastRow).FillDown
+    Range("H2:H" & lastRow).Copy
+    Range("F2").PasteSpecial xlPasteValues
+    'Fifth Column
+    Range("H2").Formula = "=TRIM(G2)"
+    Range("H2:H" & lastRow).FillDown
+    Range("H2:H" & lastRow).Copy
+    Range("G2").PasteSpecial xlPasteValues
+    'Delete Trim Column
+    Range("G:G").Delete
 End Sub 
