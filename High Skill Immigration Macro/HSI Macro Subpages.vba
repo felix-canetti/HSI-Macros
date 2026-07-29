@@ -122,13 +122,17 @@ Sub Import_HSI_SubPages
     Sheets(st36A).Copy
     bk36B = ActiveWorkbook.Name
     st36B = ActiveWorkbook.ActiveSheet.Name
+    Sheets(st36A).Copy
     bk36C = ActiveWorkbook.Name
     st36C = ActiveWorkbook.ActiveSheet.Name
+    Sheets(st36A).Copy
+    bk36D = ActiveWorkbook.Name
+    st36D = ActiveWorkbook.ActiveSheet.Name
 '***Book 1
 'Selecting the first workbook
     Windows(bk36A).Activate
 'Delete 36B-M columns and renaming some columns headings
-    Range("E:I").Delete
+    Range("F:BO").Delete
     Range("A1").Value = "Page36A.CaseSerial"
     Range("B1").Value = "Page36A.PageSerial"
 'Remove Blank Rows
@@ -143,29 +147,29 @@ Sub Import_HSI_SubPages
     Next i
 'Trim The fields
     'First Column
-    Range("H2").Formula = "=TRIM(C2)"
-    Range("H2:" & lastRow).FillDown
-    Range("G2:G" & lastRow).Copy
+    Range("F2").Formula = "=TRIM(C2)"
+    Range("F2:F" & lastRow).FillDown
+    Range("F2:F" & lastRow).Copy
     Range("C2").PasteSpecial xlPasteValues
     'Second Column
-    Range("H2").Formula = "=TRIM(D2)"
-    Range("H2:" & lastRow).FillDown
-    Range("G2:G" & lastRow).Copy
+    Range("F2").Formula = "=TRIM(D2)"
+    Range("F2:F" & lastRow).FillDown
+    Range("F2:F" & lastRow).Copy
     Range("D2").PasteSpecial xlPasteValues
     'Third Column
-    Range("H2").Formula = "=TRIM(E2)"
-    Range("H2:" & lastRow).FillDown
-    Range("G2:G" & lastRow).Copy
+    Range("F2").Formula = "=TRIM(E2)"
+    Range("F2:F" & lastRow).FillDown
+    Range("F2:F" & lastRow).Copy
     Range("E2").PasteSpecial xlPasteValues
     'Delete Trim Column
-    Range("H:H").Delete
+    Range("F:F").Delete
 'Autofit Columns
     Cells.EntireColumn.AutoFit
 'Book file for 36B
 'Select book 2
     Windows(bk36B).Activate
 'Dlete the 36A columns
-    Range("C:F").Delete
+    Range("C:E,K:BO").Delete
     Range("A1") = "PAGE36B.CaseSerial"
     Range("B1") = "Page32B.PageSerial"
 'Remove blank rows
@@ -192,7 +196,7 @@ Sub Import_HSI_SubPages
     Range("H2").Formula = "=TRIM(E2)"
     Range("H2:H" & lastRow).FillDown
     Range("H2:H" & lastRow).Copy
-    Range("F2").PasteSpecial xlPasteValues
+    Range("E2").PasteSpecial xlPasteValues
     'Fourth Column
     Range("H2").Formula = "=TRIM(F2)"
     Range("H2:H" & lastRow).FillDown
