@@ -581,7 +581,7 @@ Sub Import_HSI_SubPages
     Range("L:L").Delete
     
 'Select Book 11
-    Windows(bk36).Activate
+    Windows(bk36L).Activate
 'Dlete the non 36I columns
     Range("C:AU").Delete
     Range("A1") = "PAGE36L.CaseSerial"
