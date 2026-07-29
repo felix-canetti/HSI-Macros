@@ -66,49 +66,53 @@ Sub Import_HSI_SubPages
     Range("B1").Value = "PAGE36A.DegreeName"
     Range("C1").Value = "PAGE36A.IssueInst"
     Range("D1").Value = "PAGE36A.DegreeDate"
-    RANGE("E1").Value = "PAGE36B.ProjTtl"
+    Range("E1").Value = "PAGE36B.ProjTtl"
     Range("F1").Value = "PAGE36B.ProjRole"
     Range("G1").Value = "PAGE36B.ProjInst"
     Range("H1").Value = "PAGE36B.ProjStart"
     Range("I1").Value = "PAGE36B.ProjEnd"
     Range("J1").Value = "PAGE36C.PubTitle"
     Range("K1").Value = "PAGE36C.PubJrnl"
-    Range("K1").Value = "PAGE36C.PubDate"
-    Range("L1").Value = "PAGE36D.CiteAuthor"
-    Range("M1").Value = "PAGE36D.CiteSource"
-    Range("N1").Value = "PAGE36D.CiteDate"
-    Range("O1").Value = "PAGE36D.CiteDetail"
-    Range("P1").Value = "PAGE36E.MediaOutlet"
-    Range("Q1").Value = "PAGE36E.MediaTitle"
-    Range("R1").Value = "PAGE36E.MediaDate"
-    Range("S1").Value = "PAGE36E.MediaAuthor"
-    Range("T1").Value = "PAGE36F.SpeakEvent"
-    Range("U1").Value = "PAGE36F.SpeakTopic"
-    Range("V1").Value = "PAGE36F.SpeakDate"
-    Range("W1").Value = "PAGE36F.SpeakLoc"
-    Range("X1").Value = "PAGE36H.AwardName"
-    Range("Y1").Value = "PAGE36H.AwardName"
-    Range("Z1").Value = "PAGE36H.AwardDate"
-    Range("AA1").Value = "PAGE36H.AwardCrit"
-    Range("AB1").Value = "PAGE36I.LeadRole"
-    Range("AC1").Value = "PAGE36I.LeadOrg"
-    Range("AD1").Value = "PAGE36I.LeadStart"
-    Range("AE1").Value = "PAGE36I.LeadEnd"
-    Range("AF1").Value = "PAGE36I.LeadDesc"
-    Range("AG1").Value = "PAGE36K.RschDesc"
-    Range("AH1").Value = "PAGE36K.RschGoal"
-    Range("AI1").Value = "PAGE36K.RschCndct"
-    Range("AJ1").Value = "PAGE36K.RschImpt"
-    Range("AK1").Value = "PAGE36K.RschChlng"
-    Range("AL1").Value = "PAGE36K.RschOvrcm"
-    Range("AM1").Value = "PAGE36K.RschRes"
-    Range("AN1").Value = "PAGE36K.RschRecog"
-    Range("AO1").Value = "PAGE36K.RschRole"
-    Range("AP1").Value = "PAGE36L.RefName"
-    Range("AQ1").Value = "PAGE36L.RefTitle"
-    Range("AR1").Value = "PAGE36L.RefOrg"
-    Range("AS1").Value = "PAGE36L.RefWorked"
-    Range("AT1").Value = "PAGE36L.REFExp"
+    Range("L1").Value = "PAGE36C.PubDate"
+    Range("M1").Value = "PAGE36D.CiteAuthor"
+    Range("N1").Value = "PAGE36D.CiteSource"
+    Range("O1").Value = "PAGE36D.CiteDate"
+    Range("P1").Value = "PAGE36D.CiteDetail"
+    Range("Q1").Value = "PAGE36E.MediaOutlet"
+    Range("R1").Value = "PAGE36E.MediaTitle"
+    Range("S1").Value = "PAGE36E.MediaDate"
+    Range("T1").Value = "PAGE36E.MediaAuthor"
+    Range("U1").Value = "PAGE36F.SpeakEvent"
+    Range("V1").Value = "PAGE36F.SpeakTopic"
+    Range("W1").Value = "PAGE36F.SpeakDate"
+    Range("X1").Value = "PAGE36F.SpeakLoc"
+    Range("Y1").Value = "PAGE36M.IpType"
+    Range("Z1").Value = "PAGE36M.IpTitle"
+    Range("AA1").Value = "PAGE36M.IPIssuer"
+    Range("AB1").Value = "PAGE36M.IPDate"
+    Range("AC1").Value = "PAGE36H.AwardName"
+    Range("AD1").Value = "PAGE36H.AwardOrg"
+    Range("AE1").Value = "PAGE36H.AwardDate"
+    Range("AF1").Value = "PAGE36H.AwardCrit"
+    Range("AG1").Value = "PAGE36I.LeadRole"
+    Range("AH1").Value = "PAGE36I.LeadOrg"
+    Range("AI1").Value = "PAGE36I.LeadStart"
+    Range("AJ1").Value = "PAGE36I.LeadEnd"
+    Range("AK1").Value = "PAGE36I.LeadDesc"
+    Range("AL1").Value = "PAGE36K.RschDesc"
+    Range("AM1").Value = "PAGE36K.RschGoal"
+    Range("AN1").Value = "PAGE36K.RschCndct"
+    Range("AO1").Value = "PAGE36K.RschImpt"
+    Range("AP1").Value = "PAGE36K.RschChlng"
+    Range("AQ1").Value = "PAGE36K.RschOvrcm"
+    Range("AR1").Value = "PAGE36K.RschRes"
+    Range("AS1").Value = "PAGE36K.RschRecog"
+    Range("AT1").Value = "PAGE36K.RschRole"
+    Range("AU1").Value = "PAGE36L.RefName"
+    Range("AV1").Value = "PAGE36L.RefTitle"
+    Range("AW1").Value = "PAGE36L.RefOrg"
+    Range("AX1").Value = "PAGE36L.RefWorked"
+    Range("AY1").Value = "PAGE36L.REFExp"
 
 'Need to add the rest of the code for the other subpages (PAGE36B, PAGE36C, etc.) following the same structure as above, including duplicating the workbook, deleting unnecessary columns and rows, and renaming column headings.
 'Insert the column for page serial
@@ -212,4 +216,73 @@ Sub Import_HSI_SubPages
 'AutoFit Columns again
     Cells.EntireColumn.AutoFit
 'Book for PAGE36C
+'Select book 3
+    Windows(bk36C).Activate
+'Dlete the 36A columns
+    Range("C:J,N:BO").Delete
+    Range("A1") = "PAGE36C.CaseSerial"
+    Range("B1") = "Page32C.PageSerial"
+    'Remove Blank Rows
+    Range("C:C").SpecialCells(xlCellTypeBlanks).EntireRow.Delete
+'Define the last row of data
+    lastRow = Range("C" & Rows.Count).End(xlUp).row
+'fill Down Case Serial Column
+    For i =2 To lastRow
+        If Range("A" & i).Value = "" Then
+            Range("A" & i).Value = Range("A" & (i - 1)).Value
+        End If
+    Next i
+'Trim The fields
+    'First Column
+    Range("F2").Formula = "=TRIM(C2)"
+    Range("F2:F" & lastRow).FillDown
+    Range("F2:F" & lastRow).Copy
+    Range("C2").PasteSpecial xlPasteValues
+    'Second Column
+    Range("F2").Formula = "=TRIM(D2)"
+    Range("F2:F" & lastRow).FillDown
+    Range("F2:F" & lastRow).Copy
+    Range("D2").PasteSpecial xlPasteValues
+    'Third Column
+    Range("F2").Formula = "=TRIM(E2)"
+    Range("F2:F" & lastRow).FillDown
+    Range("F2:F" & lastRow).Copy
+    Range("E2").PasteSpecial xlPasteValues
+    'Delete Trim Column
+    Range("F:F").Delete
+'Book for PAGE36D
+'Select book 4
+    Windows(bk36D).Activate
+'Dlete the non 36D columns
+    Range("C:J,N:BO").Delete
+    Range("A1") = "PAGE36C.CaseSerial"
+    Range("B1") = "Page32C.PageSerial"
+    'Remove Blank Rows
+    Range("C:C").SpecialCells(xlCellTypeBlanks).EntireRow.Delete
+'Define the last row of data
+    lastRow = Range("C" & Rows.Count).End(xlUp).row
+'fill Down Case Serial Column
+    For i =2 To lastRow
+        If Range("A" & i).Value = "" Then
+            Range("A" & i).Value = Range("A" & (i - 1)).Value
+        End If
+    Next i
+'Trim The fields
+    'First Column
+    Range("F2").Formula = "=TRIM(C2)"
+    Range("F2:F" & lastRow).FillDown
+    Range("F2:F" & lastRow).Copy
+    Range("C2").PasteSpecial xlPasteValues
+    'Second Column
+    Range("F2").Formula = "=TRIM(D2)"
+    Range("F2:F" & lastRow).FillDown
+    Range("F2:F" & lastRow).Copy
+    Range("D2").PasteSpecial xlPasteValues
+    'Third Column
+    Range("F2").Formula = "=TRIM(E2)"
+    Range("F2:F" & lastRow).FillDown
+    Range("F2:F" & lastRow).Copy
+    Range("E2").PasteSpecial xlPasteValues
+    'Delete Trim Column
+    Range("F:F").Delete
 End Sub 
