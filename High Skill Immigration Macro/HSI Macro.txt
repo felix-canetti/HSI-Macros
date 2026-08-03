@@ -220,5 +220,47 @@ Sub importHSI_Questionnaire()
      Range("GJ1") = "PAGE36.NIWCriteria"
      Range("GK1") = "PAGE36.AwardYN" 
      Range("GL1") = "PAGE36.AwardDtl"
+     Range("GM1") = "PAGE36.AssocYn"
+     Range("GN1") = "PAGE36.AssocDtl"
+     Range("GO1") = "PAGE36K.RschDesc"
+     Range("GP1") = "PAGE36K.RschGoal"
+     Range("GQ1") = "PAGE36K.RschCndct"
+     Range("GR1") = "PAGE36K.RschImpt"
+     Range("GS1") = "PAGE36K.RschChlng"
+     Range("GT1") = "PAGE36K.RschOvrcm"
+     Range("GU1") = "PAGE36K.RschRes"
+     Range("GV1") = "PAGE36K.RschRecog"
+     Range("GW1") = "PAGE36K.RschRole"
+     Range("GX1") = "PAGE36L.RefName"
+     Range("GY1") = "PAGE36L.RefTitle"
+     Range("GZ1") = "PAGE36L.RefOrg"
+     Range("HA1") = "PAGE36L.RefWorked"
+     Range("HB1") = "PAGE36L.REFExp"
+     Range("HC1") = "DEL"
+     Range("HD1") = "DEL"
+     Range("HE1") = "DEL"
+     Range("HF1") = "DEL"
+     Range("HG1") = "DEL"
+     Range("HH1") = "DEL"
+     Range("HI1") = "DEL"
+     Range("HJ1") = "DEL"
+     Range("HK1") = "PAGE36.FormURL"
+     Range("HL1") = "DEL"
+     Range("HM1") = "DEL"
+     Range("HN1") = "DEL"
+     Range("HO1") = "DEL"
+     Range("HP1") = "DEL"
+     Range("HQ1") = "DEL"
+
+     'Reformatting the Employer field to avoid shorthand name for most common petitioners
+     For i = 2 To lastrow
+        If UCase(Range("DX" & i).Value) = TAT Or UCase(Range("DX" & i).Value) = "TCS" Then
+            Range("DX" & i).Value = "Tata Consultancy Services Limited"
+        Elseif UCase(Range("DX" & i).Value) = "MAS" Then
+            Range("DX" & i).Value = "Mastek Inc."
+        Elseif UCase(Range("DX" & i).Value) = "CAP" Then
+            Range("DX" & i).Value = "Capgemini America, Inc."
+        End If
+    Next i
 
 End Sub
