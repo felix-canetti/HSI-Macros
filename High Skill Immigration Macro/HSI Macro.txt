@@ -263,4 +263,26 @@ Sub importHSI_Questionnaire()
         End If
     Next i
 
+    'This section of the code is to remove ALL of the columns that labelled as DEL
+    Dim d as Long
+    For d = 1000 To 1 Step - 1
+        If Cells(1,d).Value = "DEL" Then
+            Columns(d).Delete
+        End If
+    Next
+
+'Moving Contact 2 to new Book
+    Workbooks.Add
+    'Get the new workbook name
+    newFile = ActiveWorkbook.Name
+    Range("A1") = "CONTACT2.CaseSerial"
+    Workbooks(importFile).Activate
+    'Copying over the Contact2 Columns to the new workbook
+    Range("F:M,O:S,U:AI,BD:BM,BO:BX,BZ:CI,DQ:DS").Copy
+    Workbooks(newFile).Activate
+    Range("B1").PasteSpecial xlPasteAll
+    Cells.EntireColumn.Autofit
+    Range(lastRow + 1 & ":1048576").Delete
+    Range("A1").Select
+
 End Sub
