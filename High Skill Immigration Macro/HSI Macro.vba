@@ -285,4 +285,13 @@ Sub importHSI_Questionnaire()
     Range(lastRow + 1 & ":1048576").Delete
     Range("A1").Select
 
+'Moving Contact 3 to new Book
+    Workbooks.Add
+    'Get the new workbook name
+    newFile = ActiveWorkbook.Name
+    Range("A1") = "CONTACT3.CaseSerial"
+    Workbooks(importFile).Activate
+    'Copying over the Contact3 Columns to the new workbook
+    
+
 End Sub
