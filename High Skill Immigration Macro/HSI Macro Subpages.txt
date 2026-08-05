@@ -196,7 +196,7 @@ Sub Import_HSI_SubPages
 'Dlete the non 36B columns
     Range("C:E,K:BO").Delete
     Range("A1") = "PAGE36B.CaseSerial"
-    Range("B1") = "Page32B.PageSerial"
+    Range("B1") = "Page36B.PageSerial"
 'Remove blank rows
     Range("C:C").SpecialCells(xlCellTypeBlanks).EntireRow.Delete
 'Define Last Row, Again
@@ -242,7 +242,7 @@ Sub Import_HSI_SubPages
 'Dlete the 36C columns
     Range("C:J,N:BO").Delete
     Range("A1") = "PAGE36C.CaseSerial"
-    Range("B1") = "Page32C.PageSerial"
+    Range("B1") = "Page36C.PageSerial"
     'Remove Blank Rows
     Range("C:C").SpecialCells(xlCellTypeBlanks).EntireRow.Delete
 'Define the last row of data
@@ -277,7 +277,7 @@ Sub Import_HSI_SubPages
 'Dlete the non 36D columns
     Range("C:M,R:BO").Delete
     Range("A1") = "PAGE36D.CaseSerial"
-    Range("B1") = "Page32D.PageSerial"
+    Range("B1") = "Page36D.PageSerial"
     'Remove Blank Rows
     Range("C:C").SpecialCells(xlCellTypeBlanks).EntireRow.Delete
 'Define the last row of data
@@ -316,7 +316,7 @@ Sub Import_HSI_SubPages
 'Dlete the non 36E columns
     Range("C:Q,V:BO").Delete
     Range("A1") = "PAGE36E.CaseSerial"
-    Range("B1") = "Page32E.PageSerial"
+    Range("B1") = "Page36E.PageSerial"
     'Remove Blank Rows
     Range("C:C").SpecialCells(xlCellTypeBlanks).EntireRow.Delete
 'Define the last row of data
@@ -355,7 +355,7 @@ Sub Import_HSI_SubPages
 'Dlete the non 36F columns
     Range("C:U,Z:BO").Delete
     Range("A1") = "PAGE36F.CaseSerial"
-    Range("B1") = "Page32F.PageSerial"
+    Range("B1") = "Page36F.PageSerial"
     'Remove Blank Rows
     Range("C:C").SpecialCells(xlCellTypeBlanks).EntireRow.Delete
 'Define the last row of data
@@ -395,7 +395,7 @@ Sub Import_HSI_SubPages
 'Dlete the non 36M columns
     Range("C:Y,AD:BO").Delete
     Range("A1") = "PAGE36M.CaseSerial"
-    Range("B1") = "Page32M.PageSerial"
+    Range("B1") = "Page36M.PageSerial"
     'Remove Blank Rows
     Range("C:C").SpecialCells(xlCellTypeBlanks).EntireRow.Delete
 'Define the last row of data
@@ -519,8 +519,8 @@ Sub Import_HSI_SubPages
     Windows(bk36K).Activate
 'Dlete the non 36K columns
     Range("C:AL,AV:BO").Delete
-    Range("A1") = "PAGE36I.CaseSerial"
-    Range("B1") = "Page36I.PageSerial"
+    Range("A1") = "PAGE36K.CaseSerial"
+    Range("B1") = "Page36K.PageSerial"
     'Remove Blank Rows
     Range("C:C").SpecialCells(xlCellTypeBlanks).EntireRow.Delete
 'Define the last row of data
