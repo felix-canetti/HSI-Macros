@@ -10,11 +10,12 @@ Sub importHSI_Questionnaire()
     importFile = ActiveWorkbook.Name
     'Formatting to keep leading zeros for ZipCodes, SSN and I-94 Numbers
     'Zip Code Formatting
-    Range("Y:Y,AF:AF,BH:BH,BS:BS,CD:CD,CP:CP,CZ::CZ").NumberFormat = "00000"
+    Range("X:X,AE:AE,BG:BG,BR:BR,CC:CC,CO:CO,CY:CY").NumberFormat = "00000"
     'Formatting the SSNumber Fields
-    Range("R:R").NumberFormat = "000000000"
+    Range("Q:Q").NumberFormat = "000000000"
     'Formatting any I-94 columns
-    Range("AM:AM").NumberFormat = "00000000000"
+    Range("AL:AL").NumberFormat = "00000000000"
+
 
     'Shift New Columns at the end to the right by 4 or so columns to make space for the page36 assignments at the end
     Columns("HR:HU").Insert Shift:=xlToRight
