@@ -1,4 +1,4 @@
-Sub Import_HSI_SubPages
+Sub Import_HSI_SubPages_07_29_2026()
 
 'PURPOSE: To create the import files that will be used in the creation of the page36 subpages, ranging from pag36a all the way to page36L
 
@@ -20,8 +20,8 @@ Sub Import_HSI_SubPages
     Dim stImport As String
     Dim bk36A As String
     Dim bk36B As String
-    dim bk36C As String
-    dim bk36D As String
+    Dim bk36C As String
+    Dim bk36D As String
     Dim bk36E As String
     Dim bk36F As String
     Dim bk36M As String
@@ -32,8 +32,8 @@ Sub Import_HSI_SubPages
 
     Dim st36A As String
     Dim st36B As String
-    dim st36C As String
-    dim st36D As String
+    Dim st36C As String
+    Dim st36D As String
     Dim st36E As String
     Dim st36F As String
     Dim st36M As String
@@ -59,8 +59,8 @@ Sub Import_HSI_SubPages
     bk36A = ActiveWorkbook.Name
     st36A = ActiveWorkbook.ActiveSheet.Name
 'Delete Unnecsary columns and rows
-    Rows("1:2").Delete shift:=xlUp
-    Range("A:A,C:EH,EL:EL,ER:ER,EV:EV,FA:FA,FF:FF,FK:FK,FP:FP,FU:FU,GA:GN,HC:HQ").Delete
+    Rows("1:2").Delete Shift:=xlUp
+    Range("A:A,C:EG,EK:EK,EQ:EQ,EU:EU,EZ:EZ,FE:FE,FJ:FJ,FO:FO,FT:FT,FZ:GM,HB:HP").Delete
 'Rename the Column Headings
     Range("A1").Value = "CaseSerial"
     Range("B1").Value = "PAGE36A.DegreeName"
@@ -116,7 +116,7 @@ Sub Import_HSI_SubPages
 
 'Need to add the rest of the code for the other subpages (PAGE36B, PAGE36C, etc.) following the same structure as above, including duplicating the workbook, deleting unnecessary columns and rows, and renaming column headings.
 'Insert the column for page serial
-    Range("B:B").Insert shift:=xlToRight
+    Range("B:B").Insert Shift:=xlToRight
     Range("B1").Value = "PageSerial"
 'find and delete any special weird characters in the data
     Range("A:I").Replace What:="â€™", Replacement:=""
@@ -157,15 +157,15 @@ Sub Import_HSI_SubPages
 'Selecting the first workbook
     Windows(bk36A).Activate
 'Delete 36B-M columns and renaming some columns headings
-    Range("F:BO").Delete
+    Range("F:AZ").Delete
     Range("A1").Value = "Page36A.CaseSerial"
     Range("B1").Value = "Page36A.PageSerial"
 'Remove Blank Rows
     Range("C:C").SpecialCells(xlCellTypeBlanks).EntireRow.Delete
 'Define the last row of data
-    lastRow = Range("C" & Rows.Count).End(xlUp).row
+    lastRow = Range("C" & Rows.Count).End(xlUp).Row
 'fill Down Case Serial Column
-    For i =2 To lastRow
+    For i = 2 To lastRow
         If Range("A" & i).Value = "" Then
             Range("A" & i).Value = Range("A" & (i - 1)).Value
         End If
@@ -182,7 +182,7 @@ Sub Import_HSI_SubPages
     Range("F2:F" & lastRow).Copy
     Range("D2").PasteSpecial xlPasteValues
     'Third Column
-    Range("F2").Formula = "=TRIM(E2)"
+    Range("F2").Formula = "=TRIM((TEXT(E2, ""m/d/yyyy"")))"
     Range("F2:F" & lastRow).FillDown
     Range("F2:F" & lastRow).Copy
     Range("E2").PasteSpecial xlPasteValues
@@ -194,9 +194,9 @@ Sub Import_HSI_SubPages
 'Select book 2
     Windows(bk36B).Activate
 'Dlete the non 36B columns
-    Range("C:E,K:BO").Delete
+    Range("C:E,J:BO").Delete
     Range("A1") = "PAGE36B.CaseSerial"
-    Range("B1") = "Page36B.PageSerial"
+    Range("B1") = "Page32B.PageSerial"
 'Remove blank rows
     Range("C:C").SpecialCells(xlCellTypeBlanks).EntireRow.Delete
 'Define Last Row, Again
@@ -223,12 +223,12 @@ Sub Import_HSI_SubPages
     Range("H2:H" & lastRow).Copy
     Range("E2").PasteSpecial xlPasteValues
     'Fourth Column
-    Range("H2").Formula = "=TRIM(F2)"
+    Range("H2").Formula = "=TRIM((TEXT(F2, ""m/d/yyyy"")))"
     Range("H2:H" & lastRow).FillDown
     Range("H2:H" & lastRow).Copy
     Range("F2").PasteSpecial xlPasteValues
     'Fifth Column
-    Range("H2").Formula = "=TRIM(G2)"
+    Range("H2").Formula = "=TRIM((TEXT(G2, ""m/d/yyyy""))"
     Range("H2:H" & lastRow).FillDown
     Range("H2:H" & lastRow).Copy
     Range("G2").PasteSpecial xlPasteValues
@@ -242,13 +242,13 @@ Sub Import_HSI_SubPages
 'Dlete the 36C columns
     Range("C:J,N:BO").Delete
     Range("A1") = "PAGE36C.CaseSerial"
-    Range("B1") = "Page36C.PageSerial"
+    Range("B1") = "Page32C.PageSerial"
     'Remove Blank Rows
     Range("C:C").SpecialCells(xlCellTypeBlanks).EntireRow.Delete
 'Define the last row of data
-    lastRow = Range("C" & Rows.Count).End(xlUp).row
+    lastRow = Range("C" & Rows.Count).End(xlUp).Row
 'fill Down Case Serial Column
-    For i =2 To lastRow
+    For i = 2 To lastRow
         If Range("A" & i).Value = "" Then
             Range("A" & i).Value = Range("A" & (i - 1)).Value
         End If
@@ -277,13 +277,13 @@ Sub Import_HSI_SubPages
 'Dlete the non 36D columns
     Range("C:M,R:BO").Delete
     Range("A1") = "PAGE36D.CaseSerial"
-    Range("B1") = "Page36D.PageSerial"
+    Range("B1") = "Page32D.PageSerial"
     'Remove Blank Rows
     Range("C:C").SpecialCells(xlCellTypeBlanks).EntireRow.Delete
 'Define the last row of data
-    lastRow = Range("C" & Rows.Count).End(xlUp).row
+    lastRow = Range("C" & Rows.Count).End(xlUp).Row
 'fill Down Case Serial Column
-    For i =2 To lastRow
+    For i = 2 To lastRow
         If Range("A" & i).Value = "" Then
             Range("A" & i).Value = Range("A" & (i - 1)).Value
         End If
@@ -316,13 +316,13 @@ Sub Import_HSI_SubPages
 'Dlete the non 36E columns
     Range("C:Q,V:BO").Delete
     Range("A1") = "PAGE36E.CaseSerial"
-    Range("B1") = "Page36E.PageSerial"
+    Range("B1") = "Page32E.PageSerial"
     'Remove Blank Rows
     Range("C:C").SpecialCells(xlCellTypeBlanks).EntireRow.Delete
 'Define the last row of data
-    lastRow = Range("C" & Rows.Count).End(xlUp).row
+    lastRow = Range("C" & Rows.Count).End(xlUp).Row
 'fill Down Case Serial Column
-    For i =2 To lastRow
+    For i = 2 To lastRow
         If Range("A" & i).Value = "" Then
             Range("A" & i).Value = Range("A" & (i - 1)).Value
         End If
@@ -355,13 +355,13 @@ Sub Import_HSI_SubPages
 'Dlete the non 36F columns
     Range("C:U,Z:BO").Delete
     Range("A1") = "PAGE36F.CaseSerial"
-    Range("B1") = "Page36F.PageSerial"
+    Range("B1") = "Page32F.PageSerial"
     'Remove Blank Rows
     Range("C:C").SpecialCells(xlCellTypeBlanks).EntireRow.Delete
 'Define the last row of data
-    lastRow = Range("C" & Rows.Count).End(xlUp).row
+    lastRow = Range("C" & Rows.Count).End(xlUp).Row
 'fill Down Case Serial Column
-    For i =2 To lastRow
+    For i = 2 To lastRow
         If Range("A" & i).Value = "" Then
             Range("A" & i).Value = Range("A" & (i - 1)).Value
         End If
@@ -395,13 +395,13 @@ Sub Import_HSI_SubPages
 'Dlete the non 36M columns
     Range("C:Y,AD:BO").Delete
     Range("A1") = "PAGE36M.CaseSerial"
-    Range("B1") = "Page36M.PageSerial"
+    Range("B1") = "Page32M.PageSerial"
     'Remove Blank Rows
     Range("C:C").SpecialCells(xlCellTypeBlanks).EntireRow.Delete
 'Define the last row of data
-    lastRow = Range("C" & Rows.Count).End(xlUp).row
+    lastRow = Range("C" & Rows.Count).End(xlUp).Row
 'fill Down Case Serial Column
-    For i =2 To lastRow
+    For i = 2 To lastRow
         If Range("A" & i).Value = "" Then
             Range("A" & i).Value = Range("A" & (i - 1)).Value
         End If
@@ -439,9 +439,9 @@ Sub Import_HSI_SubPages
     'Remove Blank Rows
     Range("C:C").SpecialCells(xlCellTypeBlanks).EntireRow.Delete
 'Define the last row of data
-    lastRow = Range("C" & Rows.Count).End(xlUp).row
+    lastRow = Range("C" & Rows.Count).End(xlUp).Row
 'fill Down Case Serial Column
-    For i =2 To lastRow
+    For i = 2 To lastRow
         If Range("A" & i).Value = "" Then
             Range("A" & i).Value = Range("A" & (i - 1)).Value
         End If
@@ -479,9 +479,9 @@ Sub Import_HSI_SubPages
     'Remove Blank Rows
     Range("C:C").SpecialCells(xlCellTypeBlanks).EntireRow.Delete
 'Define the last row of data
-    lastRow = Range("C" & Rows.Count).End(xlUp).row
+    lastRow = Range("C" & Rows.Count).End(xlUp).Row
 'fill Down Case Serial Column
-    For i =2 To lastRow
+    For i = 2 To lastRow
         If Range("A" & i).Value = "" Then
             Range("A" & i).Value = Range("A" & (i - 1)).Value
         End If
@@ -519,14 +519,14 @@ Sub Import_HSI_SubPages
     Windows(bk36K).Activate
 'Dlete the non 36K columns
     Range("C:AL,AV:BO").Delete
-    Range("A1") = "PAGE36K.CaseSerial"
-    Range("B1") = "Page36K.PageSerial"
+    Range("A1") = "PAGE36I.CaseSerial"
+    Range("B1") = "Page36I.PageSerial"
     'Remove Blank Rows
     Range("C:C").SpecialCells(xlCellTypeBlanks).EntireRow.Delete
 'Define the last row of data
-    lastRow = Range("C" & Rows.Count).End(xlUp).row
+    lastRow = Range("C" & Rows.Count).End(xlUp).Row
 'fill Down Case Serial Column
-    For i =2 To lastRow
+    For i = 2 To lastRow
         If Range("A" & i).Value = "" Then
             Range("A" & i).Value = Range("A" & (i - 1)).Value
         End If
@@ -566,7 +566,7 @@ Sub Import_HSI_SubPages
     Range("L2").Formula = "=TRIM(I2)"
     Range("L2:L" & lastRow).FillDown
     Range("L2:L" & lastRow).Copy
-    Range("I2").PasteSpecial xlPasteValues    
+    Range("I2").PasteSpecial xlPasteValues
     'Eighth Column
     Range("L2").Formula = "=TRIM(J2)"
     Range("L2:L" & lastRow).FillDown
@@ -576,7 +576,7 @@ Sub Import_HSI_SubPages
     Range("L2").Formula = "=TRIM(K2)"
     Range("L2:L" & lastRow).FillDown
     Range("L2:L" & lastRow).Copy
-    Range("K2").PasteSpecial xlPasteValues    
+    Range("K2").PasteSpecial xlPasteValues
     'Delete Trim Column
     Range("L:L").Delete
     
@@ -589,9 +589,9 @@ Sub Import_HSI_SubPages
     'Remove Blank Rows
     Range("C:C").SpecialCells(xlCellTypeBlanks).EntireRow.Delete
 'Define the last row of data
-    lastRow = Range("C" & Rows.Count).End(xlUp).row
+    lastRow = Range("C" & Rows.Count).End(xlUp).Row
 'fill Down Case Serial Column
-    For i =2 To lastRow
+    For i = 2 To lastRow
         If Range("A" & i).Value = "" Then
             Range("A" & i).Value = Range("A" & (i - 1)).Value
         End If
@@ -624,4 +624,4 @@ Sub Import_HSI_SubPages
     Range("G2").PasteSpecial xlPasteValues
     'Delete Trim Column
     Range("G:G").Delete
-End Sub 
+End Sub
